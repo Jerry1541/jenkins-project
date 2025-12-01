@@ -15,7 +15,7 @@ pipeline {
                 echo 'This is from stage: Login to Dockerhub'
                 script {
                     withCredentials([string(credentialsId: 'dockerhub-jenkins', variable: 'dockerhub-pwd')]) {
-                        powershell 'docker login -u jerrinthomast -p $env:dockerhub-pwd'
+                        powershell 'docker login ' //-u jerrinthomast -p $env:dockerhub-pwd
                     }
                 }
             }
