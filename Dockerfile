@@ -1,4 +1,4 @@
-FROM ubuntu:alpine
+FROM ubuntu
 RUN apt-get update -y
 RUN apt-get install python3 -y
 WORKDIR /app
