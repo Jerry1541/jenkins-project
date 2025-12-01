@@ -14,8 +14,8 @@ pipeline {
             steps {
                 echo 'This is from stage: Login to Dockerhub'
                 script {
-                    withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                        powershell '$env:dockerhubpwd | docker login -u jerrinthomast --password-stdin'
+                    withCredentials([usernamePassword(credentialsId: 'dockerhubpwd1', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+                        bat 'docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
                     }
                 }
                 
