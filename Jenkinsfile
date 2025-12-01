@@ -13,12 +13,20 @@ pipeline {
         stage('Jerrin - Login to Dockerhub') {
             steps {
                 echo 'This is from stage: Login to Dockerhub'
+                script {
+                    withCredentials([string(credentialsId: 'dockerhub-jenkins', variable: 'dockerhub-pwd')]) {
+                        powershell 'docker login -u jerrinthomast -p ${dockerhub-pwd}'
+                    }
+                }
             }
         }
 
         stage('Jerrin - Push image to Dockerhub') {
             steps {
                 echo 'This is from stage: Push image to Dockerhub'
+                script {
+                    powershell 'docker push jerrinthomast/jenkins-project:v1'
+                }
             }
         }
     }
