@@ -14,13 +14,11 @@ pipeline {
             steps {
                 echo 'This is from stage: Login to Dockerhub'
                 script {
-                    docker.withRegistry('', 'dockerhub-jenkins') {
-                        
+                    withCredentials([string(credentialsId: 'dockerhub-jenkins', variable: 'dockerhub-pwd')]) {
+                        powershell 'docker login -u jerrinthomast --password-stdin'
                     }
-                    // withCredentials([string(credentialsId: 'dockerhub-jenkins', variable: 'dockerhub-pwd')]) {
-                    //     powershell 'docker login -u jerrinthomast -p $env:dockerhub-pwd'
-                    // }
                 }
+                
             }
         }
 
